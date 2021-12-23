@@ -1,0 +1,8 @@
+[workspace]
+members = [
+    'node',  # 节点的可执行的程序
+    'pallets/template', # 链上的功能模块
+    'runtime',
+]
+[profile.release]
+panic = 'unwind'

@@ -1,0 +1,83 @@
+[package]
+name = 'pallet-poe'
+version = '4.0.0-dev'
+description = 'FRAME pallet proof of existence.'
+authors = ['Substrate DevHub <https://github.com/substrate-developer-hub>']
+homepage = 'https://substrate.io/'
+edition = '2021'
+license = 'Unlicense'
+publish = false
+repository = 'https://github.com/substrate-developer-hub/substrate-node-template/'
+
+[package.metadata.docs.rs]
+targets = ['x86_64-unknown-linux-gnu']
+
+[dependencies.codec] # 编解码
+default-features = false
+features = ['derive']
+package = 'parity-scale-codec'
+version = '2.0.0'
+
+[dependencies.frame-benchmarking]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+optional = true
+tag = 'devhub/latest'
+version = '4.0.0-dev'
+
+[dependencies.frame-support] # poe所需要的宏
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'devhub/latest'
+version = '4.0.0-dev'
+
+# 运行时开发常用的类型，accountID，blockNumber;一些公共的存储单元
+[dependencies.frame-system]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'devhub/latest'
+version = '4.0.0-dev'
+
+[dependencies.scale-info]
+default-features = false
+features = ['derive']
+version = '1.0'
+
+[dependencies.sp-std]  # 用于视频中解决Vec时候的报错：Vec not found
+default-features = false
+version = '4.0.0-dev'
+
+#只会在test中用到的工具包
+[dev-dependencies.sp-core] # 定义核心的一些组件 核心的类型，接口
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'devhub/latest'
+version = '4.0.0-dev'
+
+# 定义一些常用的io操作，比如文件读写，lgb请求等等
+[dev-dependencies.sp-io]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'devhub/latest'
+version = '4.0.0-dev'
+
+# 运行时的常用公共类型和接口
+[dev-dependencies.sp-runtime]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'devhub/latest'
+version = '4.0.0-dev'
+
+# rust的编译标签进行条件编译，默认std
+# 哪几个模块也是std
+[features]
+default = ['std']
+runtime-benchmarks = ['frame-benchmarking']
+std = [
+    'codec/std',
+    'scale-info/std',
+    'frame-support/std',
+    'frame-system/std',
+    'frame-benchmarking/std',
+]
+try-runtime = ['frame-support/try-runtime']
